@@ -225,6 +225,11 @@
     if (subEl) subEl.textContent = CFG.subtitle || "";
     var repoLink = document.getElementById("repo-link");
     if (repoLink) repoLink.href = "https://github.com/" + OWNER + "/Portfolio";
+    var profileLink = document.getElementById("profile-link");
+    if (profileLink && OWNER) {
+      profileLink.href = "https://github.com/" + OWNER;
+      profileLink.innerHTML = ICON.github + "<span>GitHub profile</span>";
+    }
 
     buildThemeMenu();
     applyTheme(savedTheme());
