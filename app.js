@@ -39,7 +39,7 @@
 
   function siteUrl(p) {
     if (p.site) return p.site;
-    return "https://" + OWNER.toLowerCase() + ".github.io/" + p.repo + "/";
+    return "https://" + (CFG.domain || OWNER.toLowerCase() + ".github.io") + "/" + p.repo + "/";
   }
   function repoUrl(p) {
     if (p.repoUrl) return p.repoUrl;
@@ -224,7 +224,7 @@
     var subEl = document.getElementById("site-sub");
     if (subEl) subEl.textContent = CFG.subtitle || "";
     var repoLink = document.getElementById("repo-link");
-    if (repoLink) repoLink.href = "https://github.com/" + OWNER + "/Portfolio";
+    if (repoLink) repoLink.href = "https://github.com/" + OWNER + "/" + OWNER + ".github.io";
     var profileLink = document.getElementById("profile-link");
     if (profileLink && OWNER) {
       profileLink.href = "https://github.com/" + OWNER;

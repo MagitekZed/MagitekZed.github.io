@@ -1,7 +1,9 @@
 # Portfolio
 
 A single-page hub that links to all of my projects and their GitHub Pages sites.
-Live at **https://magitekzed.github.io/Portfolio/**.
+Live at **https://zedtlabs.dev/**. This repo is the GitHub user site, so every
+project with Pages turned on is also served at `https://zedtlabs.dev/<repo>/` —
+but only the projects listed in `projects.js` appear on the hub page.
 
 It's plain HTML/CSS/JS — no build step, no dependencies. GitHub Pages serves the
 files directly.
@@ -17,7 +19,7 @@ Edit **[`projects.js`](projects.js)** and add one block to the `projects` array:
   description: "One sentence about what it does.",
   updated: "2026-07-01",         // YYYY-MM-DD
   // optional:
-  site: "https://magitekzed.github.io/My-New-Thing/",  // omit to auto-derive from repo
+  site: "https://example.com/",  // omit to use https://zedtlabs.dev/<repo>/
   tags: ["webgl", "game"],
   private: true,                  // adds a small lock on the Code link
 },
@@ -34,11 +36,11 @@ automatically.
 | `repo` | yes | Repo name under the owner. Code link = `https://github.com/<owner>/<repo>`. |
 | `description` | yes | One sentence. |
 | `updated` | yes | `YYYY-MM-DD`. Drives the "Updated …" line and the default sort. |
-| `site` | no | Live URL. Defaults to `https://<owner>.github.io/<repo>/`. Set for custom domains. |
+| `site` | no | Live URL. Defaults to `https://<domain>/<repo>/`. Set for projects hosted elsewhere. |
 | `tags` | no | Array of short strings shown as pills. |
 | `private` | no | `true` shows a lock on the Code link (it still opens for you when signed in). |
 
-The owner, page title, and subtitle live at the top of `projects.js` under
+The owner, domain, page title, and subtitle live at the top of `projects.js` under
 `window.PORTFOLIO`.
 
 ## Features
@@ -62,4 +64,5 @@ The owner, page title, and subtitle live at the top of `projects.js` under
 - `index.html` — markup + styles.
 - `projects.js` — **the data you edit.**
 - `app.js` — rendering, sorting, search, theme logic.
+- `CNAME` — the custom domain (`zedtlabs.dev`).
 - `.nojekyll` — tells Pages to serve files as-is (no Jekyll processing).
