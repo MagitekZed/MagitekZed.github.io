@@ -22,7 +22,7 @@
 window.PORTFOLIO = {
   owner: "MagitekZed",
   domain: "zedtlabs.dev",
-  title: "Zach's Projects",
+  title: "ZeD-T Labs",
   subtitle: "A hub linking to all of my live web projects.",
 
   projects: [
