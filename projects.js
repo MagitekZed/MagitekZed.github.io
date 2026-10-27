@@ -92,8 +92,8 @@ window.PORTFOLIO = {
       image: "img/primary-defense.webp",
       category: "games",
       updated: "2026-10-14",
-      tags: ["tower defense", "canvas", "balance bot"],
-      summary: "A tower defense game about mixing paint. Every enemy is mixed from red, yellow and blue, each color has its own health, and a tower only drains the colors it shares with its target. Three maps, three difficulties, and a bot that plays every wave to keep the balance honest.",
+      tags: ["tower defense", "canvas", "color mixing"],
+      summary: "A tower defense game about mixing paint. Every enemy is mixed from red, yellow and blue, each color has its own health, and a tower only drains the colors it shares with its target. Three maps and three difficulties, from a teaching map to a long winding road.",
     },
     {
       title: "Encyclopedia Magica",
@@ -113,7 +113,7 @@ window.PORTFOLIO = {
       category: "games",
       updated: "2026-09-16",
       tags: ["party game", "multiplayer", "supabase"],
-      summary: "A party game for one TV and a room full of phones. Each round searches YouTube with a random four-character term, players pick the strangest video from what comes back, and everyone votes on the winner.",
+      summary: "A party game for one TV and a room full of phones. Each round searches YouTube with a random four-character term, players pick their favorite video (using whatever criteria they like to judge) from what comes back, and everyone votes on the winner.",
     },
     {
       title: "Embervale Blueprints",
