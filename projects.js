@@ -1,174 +1,289 @@
 /* ============================================================================
- *  projects.js  —  the ONLY file you edit to manage your portfolio.
+ *  projects.js: the only file you edit to manage the portfolio.
  * ----------------------------------------------------------------------------
- *  To add a project, copy one { ... } block into the `projects` array below.
- *  Order does not matter — the page sorts itself (default: newest first).
+ *  Each project is one { ... } block in `projects`. Order doesn't matter: the
+ *  featured grid keeps the order below, and the log sorts by `updated`.
  *
- *  Fields per project:
- *    title        (required)  Display name shown on the card.
- *    repo         (required)  GitHub repo name under `owner`. The "Code" link
- *                             is built as  https://github.com/<owner>/<repo>
- *    description  (required)  One sentence describing the project.
- *    updated      (required)  Last-updated date, "YYYY-MM-DD".
- *    site         (optional)  Live URL. If omitted, it defaults to
- *                             https://<domain>/<repo>/
- *                             Set it for projects hosted somewhere else.
- *    tags         (optional)  Array of short strings shown as little pills.
- *    private      (optional)  true if the GitHub repo is private. Adds a small
- *                             lock on the "Code" link (the link still works for
- *                             you when you're signed in to GitHub).
+ *  Fields:
+ *    title     (required)  Display name.
+ *    repo      (required)  GitHub repo name under `owner`.
+ *    summary   (required)  One or two plain sentences.
+ *    category  (required)  One of the keys in `categories`.
+ *    updated   (required)  "YYYY-MM-DD", the last meaningful update.
+ *    status    (optional)  "live" (default), "cli", "desktop", "dev" or "code".
+ *                            live     has a site at https://<domain>/<repo>/
+ *                            cli      command-line tool with a download page
+ *                            desktop  desktop app, no web version
+ *                            dev      in development, not deployed yet
+ *                            code     source only, no live site
+ *    featured  (optional)  true to show it as a large card with a screenshot.
+ *    image     (optional)  Screenshot path for featured cards (img/<repo>.webp).
+ *    tags      (optional)  Short strings shown as #tags.
+ *    private   (optional)  true if the repo is private. Hides the source link.
+ *    site      (optional)  Live URL, if it isn't https://<domain>/<repo>/.
  * ========================================================================== */
 
 window.PORTFOLIO = {
   owner: "MagitekZed",
   domain: "zedtlabs.dev",
-  title: "ZeD-T Labs",
-  subtitle: "A hub linking to all of my live web projects.",
+  name: "Zach Dando",
+  lab: "ZeD-T Labs",
+  email: "hello@zedtlabs.dev",
+  linkedin: "https://www.linkedin.com/in/zachary-dando-thompson/",
+  since: "2023",
+
+  categories: {
+    games: "games",
+    tabletop: "tabletop",
+    gametools: "game tools",
+    viz: "visualization",
+    tools: "tools",
+  },
 
   projects: [
+    /* ---------------------------------------------------------- featured */
     {
-      title: "Steam Backlog Roulette",
-      repo: "steam-roulette",
-      description: "Spins a random pick from your Steam backlog — filter by playtime, age, tags, and review score, then track “trying it / uninstalled” verdicts.",
-      updated: "2026-07-23",
-      tags: ["steam", "gaming", "backlog"],
-      private: true,
-    },
-    {
-      title: "Game Scorecards",
-      repo: "Scorecards",
-      description: "Mobile-first scorekeeping app for game night — themed smart scorecards for Quiddler, Wizard, Ticket to Ride, Magic: The Gathering, and Play Nine.",
-      updated: "2026-07-23",
-      tags: ["tabletop", "scorekeeper", "game night"],
-      private: true,
-    },
-    {
-      title: "Palworld Base Planner",
-      repo: "palworld-helper",
-      description: "Palworld 1.0 companion that tracks your paldex across all 299 pals and auto-staffs self-sufficient base crews with purpose-driven presets.",
-      updated: "2026-07-21",
-      tags: ["palworld", "gaming", "base planner"],
-      private: false,
-    },
-    {
-      title: "Algorithm Resetter",
-      repo: "algorithm-resetter",
-      description: "Seeds your YouTube watch history with curated-random videos from topics you choose, nudging your recommendations out of their rut.",
-      updated: "2026-07-05",
-      tags: ["youtube", "algorithm", "web tool"],
-      private: false,
-    },
-    {
-      title: "Encyclopedia Magica",
-      repo: "Encyclopedia-Magica",
-      description: "Random magic-item & artifact roller for AD&D 2e's Encyclopedia Magica — 5,709 entries across every table, with an explain-the-roll trace tree.",
-      updated: "2026-07-02",
-      tags: ["ad&d 2e", "tabletop", "dice roller"],
-      private: false,
-    },
-    {
-      title: "PDF Splitter",
-      repo: "PDF-Splitter",
-      description: "Fully in-browser, private PDF splitter that slices big PDFs — like RPG sourcebooks — into token-sized chunks ready to feed an AI.",
-      updated: "2026-07-01",
-      tags: ["pdf", "tabletop", "ai"],
-      private: false,
-    },
-    {
-      title: "YouTube Roulette",
-      repo: "ytroulette",
-      description: "Jackbox-style multiplayer party game where players search YouTube with random terms, pick the weirdest videos, and vote to win.",
-      updated: "2026-06-23",
-      tags: ["party game", "multiplayer", "supabase"],
-      private: false,
-    },
-    {
-      title: "MCU Multiverse Timeline",
-      repo: "mcu-timeline",
-      description: "Interactive Marvel Cinematic Universe explorer charting characters across in-universe and release-order timelines, with crossovers and canon status.",
-      updated: "2026-06-21",
-      tags: ["marvel", "timeline", "react"],
-      private: true,
-    },
-    {
-      title: "Maze Walker",
-      repo: "Maze-Walker",
-      description: "Isometric procedural roguelike where your torchlight is vision, time, and health as you descend 12 seeded mazes to steal an idol.",
-      updated: "2026-06-19",
-      tags: ["roguelike", "three.js", "game"],
-      private: true,
-    },
-    {
-      title: "D&D Nexus",
-      repo: "DnD-Toolkit",
-      description: "Real-time dual-view DM toolkit for D&D 5e: run combat, track initiative, push maps and audio to players, and take campaign notes.",
-      updated: "2026-06-15",
-      tags: ["dnd", "tabletop", "supabase"],
-      private: true,
-    },
-    {
-      title: "Anime Tracker",
-      repo: "Anime-Tracker",
-      description: "Personal anime watch-log and watchlist with ratings, status filters, and a taste profile, all in a single dark-themed page.",
-      updated: "2026-07-22",
-      tags: ["anime", "tracker", "watchlist"],
-      private: true,
-    },
-    {
-      title: "My Library",
-      repo: "my-library",
-      description: "Offline reading library built from a Goodreads export, with stats, insights, cover art, series tracking, and per-universe timelines.",
-      updated: "2026-06-08",
-      tags: ["books", "goodreads", "spa"],
-      private: true,
+      title: "Atlas of Ages",
+      repo: "atlas-of-ages",
+      featured: true,
+      image: "img/atlas-of-ages.webp",
+      category: "viz",
+      updated: "2026-10-27",
+      tags: ["simulation", "procedural", "canvas"],
+      summary: "A world simulator that runs by itself. Set the conditions of a new planet and history unfolds a day at a time: plate tectonics and climate, forests and herds, tribes that grow into empires, trade, faiths, wars and plagues. Every town, ruler and war gets its own record, and there are god tools if you want to interfere.",
     },
     {
       title: "StarWiki",
       repo: "Star-Wiki",
-      description: "Explore Wikipedia as a 3D starfield, flying article to article along related-link rays and mapping your journey as a constellation.",
+      featured: true,
+      image: "img/Star-Wiki.webp",
+      category: "viz",
       updated: "2026-05-29",
-      tags: ["wikipedia", "three.js", "visualization"],
-      private: false,
+      tags: ["three.js", "wikipedia api", "3d"],
+      summary: "Wikipedia as a 3D starfield. Every article is a star, and its most related links orbit it as rays you can fly along. Zoom out to see your whole trail drawn as a constellation, or ask for the shortest link path between any two articles and watch the camera fly the route.",
+    },
+    {
+      title: "Lag Lens",
+      repo: "lag-lens",
+      featured: true,
+      image: "img/lag-lens.webp",
+      category: "tools",
+      status: "cli",
+      updated: "2026-10-23",
+      tags: ["python", "networking", "diagnostics"],
+      summary: "Built to answer one question about Xbox rubber-banding: is it the home network, the cable modem, Comcast, or the internet? It runs on a computer plugged into the same router, probes every hop several times a second, detects lag episodes on its own, and writes a plain-English report you can show your ISP.",
+    },
+    {
+      title: "MCU Multiverse Timeline",
+      repo: "mcu-timeline",
+      featured: true,
+      private: true,
+      image: "img/mcu-timeline.webp",
+      category: "viz",
+      updated: "2026-08-10",
+      tags: ["react", "typescript", "dataset"],
+      summary: "Follow any Marvel Cinematic Universe character through every appearance, in story order or release order. Overlay characters to see where their paths cross, with canon status and which universe each project belongs to. Uncertain placements are flagged instead of hidden.",
+    },
+    {
+      title: "Primary Defense",
+      repo: "primary-defense",
+      featured: true,
+      private: true,
+      image: "img/primary-defense.webp",
+      category: "games",
+      updated: "2026-10-14",
+      tags: ["tower defense", "canvas", "balance bot"],
+      summary: "A tower defense game about mixing paint. Every enemy is mixed from red, yellow and blue, each color has its own health, and a tower only drains the colors it shares with its target. Three maps, three difficulties, and a bot that plays every wave to keep the balance honest.",
+    },
+    {
+      title: "Encyclopedia Magica",
+      repo: "Encyclopedia-Magica",
+      featured: true,
+      image: "img/Encyclopedia-Magica.webp",
+      category: "tabletop",
+      updated: "2026-07-02",
+      tags: ["ad&d 2e", "dice roller", "dataset"],
+      summary: "A roller for the AD&D 2nd edition Encyclopedia Magica, with all 5,709 magic items and artifacts digitized into one checked dataset. Every roll comes with a trace tree that shows exactly which tables and dice produced it.",
+    },
+    {
+      title: "YouTube Roulette",
+      repo: "ytroulette",
+      featured: true,
+      image: "img/ytroulette.webp",
+      category: "games",
+      updated: "2026-09-16",
+      tags: ["party game", "multiplayer", "supabase"],
+      summary: "A party game for one TV and a room full of phones. Each round searches YouTube with a random four-character term, players pick the strangest video from what comes back, and everyone votes on the winner.",
+    },
+    {
+      title: "Embervale Blueprints",
+      repo: "embervale-blueprints",
+      featured: true,
+      image: "img/embervale-blueprints.webp",
+      category: "gametools",
+      updated: "2026-10-27",
+      tags: ["enshrouded", "3d", "planner"],
+      summary: "Fan-made planning tools for Enshrouded 1.0: a block-by-block base planner you can walk through in 3D, and a build tester for the full 243-node skill tree. Everything saves in your browser.",
+    },
+
+    /* --------------------------------------------------------------- log */
+    {
+      title: "My Library",
+      repo: "my-library",
+      private: true,
+      category: "tools",
+      updated: "2026-08-26",
+      tags: ["books", "goodreads"],
+      summary: "A reading database built from a Goodreads export, with stats, series tracking, cover art and per-universe timelines.",
+    },
+    {
+      title: "Palpedia",
+      repo: "palworld-helper",
+      category: "gametools",
+      updated: "2026-08-11",
+      tags: ["palworld"],
+      summary: "Palworld 1.0 companion that tracks your paldex across all 299 pals and suggests self-sufficient base crews.",
+    },
+    {
+      title: "Cribbage",
+      repo: "Cribbage",
+      category: "games",
+      updated: "2026-08-03",
+      tags: ["card game", "svg"],
+      summary: "Cribbage against the computer, with full standard scoring and three difficulty levels. The test suite checks all 2,598,960 possible hands.",
     },
     {
       title: "BB3 League Tracker",
       repo: "BB3-Tracker",
-      description: "Web app for running in-person Blood Bowl (BB2025) leagues: standings, teams, treasury, schedules, live match tracking and a rules glossary.",
-      updated: "2026-03-20",
-      tags: ["blood bowl", "league tracker", "tabletop"],
-      private: false,
+      category: "tabletop",
+      updated: "2026-10-08",
+      tags: ["blood bowl"],
+      summary: "Runs in-person Blood Bowl leagues: standings, teams, treasury, schedules, live match tracking and a rules glossary.",
+    },
+    {
+      title: "D&D Toolkit",
+      repo: "DnD-Toolkit",
+      private: true,
+      category: "tabletop",
+      updated: "2026-06-15",
+      tags: ["d&d 5e", "supabase"],
+      summary: "A real-time, two-screen toolkit for D&D 5e. The DM runs combat and initiative and pushes maps and audio to a display the players can see.",
+    },
+    {
+      title: "D&D Nexus",
+      repo: "dnd-nexus",
+      status: "code",
+      category: "tabletop",
+      updated: "2026-10-08",
+      tags: ["d&d 5e", "vanilla js"],
+      summary: "The earlier version of the D&D toolkit: a DM controller plus an in-room player display, built in plain JavaScript on Supabase.",
+    },
+    {
+      title: "PDF Splitter",
+      repo: "PDF-Splitter",
+      category: "tools",
+      updated: "2026-07-01",
+      tags: ["pdf", "ai"],
+      summary: "Splits big PDFs, like RPG sourcebooks, into chunks sized for an AI model. Runs entirely in the browser, so files never leave your computer.",
+    },
+    {
+      title: "Maze Walker",
+      repo: "Maze-Walker",
+      private: true,
+      category: "games",
+      updated: "2026-06-19",
+      tags: ["roguelike", "three.js"],
+      summary: "An isometric roguelike where your torchlight is your vision, your clock and your health, across 12 seeded mazes.",
+    },
+    {
+      title: "Steam Backlog Roulette",
+      repo: "steam-roulette",
+      private: true,
+      category: "gametools",
+      updated: "2026-08-18",
+      tags: ["steam"],
+      summary: "Picks a random game from your Steam backlog, with filters for playtime, age, tags and reviews, and keeps track of how each pick went.",
+    },
+    {
+      title: "Algorithm Resetter",
+      repo: "algorithm-resetter",
+      category: "tools",
+      updated: "2026-07-05",
+      tags: ["youtube"],
+      summary: "Seeds your YouTube watch history with curated random videos from topics you choose, to pull your recommendations out of a rut.",
+    },
+    {
+      title: "Game Scorecards",
+      repo: "Scorecards",
+      private: true,
+      category: "tabletop",
+      updated: "2026-07-23",
+      tags: ["scorekeeper", "mobile"],
+      summary: "Phone-first scorekeeping for game night, with themed scorecards for Quiddler, Wizard, Ticket to Ride, Magic: The Gathering and Play Nine.",
     },
     {
       title: "Chain Games",
       repo: "chain-games",
-      description: "Disc golf scoring app with alternative game modes for tracking rounds and playing friendly variant games.",
-      updated: "2026-07-12",
-      tags: ["disc golf", "scorekeeper", "sports"],
       private: true,
+      category: "games",
+      updated: "2026-07-12",
+      tags: ["disc golf", "scorekeeper"],
+      summary: "Disc golf scoring with alternative game modes for friendly rounds.",
+    },
+    {
+      title: "Anime Tracker",
+      repo: "Anime-Tracker",
+      private: true,
+      category: "tools",
+      updated: "2026-10-21",
+      tags: ["watchlist"],
+      summary: "A personal anime watch log and watchlist with ratings, filters and a taste profile.",
     },
     {
       title: "Country Outliner",
       repo: "Country-Outliner",
-      description: "Pick any country and watch its border outline draw itself in animated, GPU-rendered WebGL with neon, blueprint, and wireframe glow themes.",
-      updated: "2025-11-02",
-      tags: ["webgl", "three.js", "maps"],
       private: true,
+      category: "viz",
+      updated: "2025-11-02",
+      tags: ["webgl", "maps"],
+      summary: "Pick any country and watch its border draw itself in animated WebGL, with neon, blueprint and wireframe themes.",
     },
     {
       title: "NMS Refiner",
       repo: "NMS-Refiner",
-      description: "No Man's Sky refiner recipe lookup tool with item selectors, a crafting progression ladder, and reverse product-to-inputs search.",
-      updated: "2025-09-14",
-      tags: ["no man's sky", "gaming", "recipe tool"],
       private: true,
+      category: "gametools",
+      updated: "2025-09-14",
+      tags: ["no man's sky"],
+      summary: "No Man's Sky refiner recipe lookup, with a crafting ladder and a reverse search from product to inputs.",
     },
     {
-      title: "NMS Trade Route Tracker",
+      title: "NMS Economist",
       repo: "NMS-Economist",
-      description: "Local-only tracker that logs No Man's Sky systems, economies, and prices to auto-build optimized trade routes with export and shareable URLs.",
-      updated: "2025-09-12",
-      tags: ["no man's sky", "gaming", "tracker"],
       private: true,
+      category: "gametools",
+      updated: "2025-09-12",
+      tags: ["no man's sky"],
+      summary: "Logs No Man's Sky systems, economies and prices, then builds trade routes from them.",
+    },
+    {
+      title: "Dark Filaments",
+      repo: "Dark-Filaments",
+      status: "dev",
+      category: "games",
+      updated: "2026-10-08",
+      tags: ["idle game", "react", "three.js"],
+      summary: "An idle game about entropy and loss that grows from one solar system out to the cosmic web, played in short check-ins over weeks. In development and not deployed yet.",
+    },
+    {
+      title: "Prism",
+      repo: "prism-player",
+      private: true,
+      status: "desktop",
+      category: "tools",
+      updated: "2026-08-02",
+      tags: ["electron", "audio", "three.js"],
+      summary: "A desktop music player with a laser-show visualizer that sweeps and flashes with the beat, driven by real-time audio analysis.",
     },
   ],
 };

@@ -1,68 +1,58 @@
-# Portfolio
+# ZeD-T Labs
 
-A single-page hub that links to all of my projects and their GitHub Pages sites.
-Live at **https://zedtlabs.dev/**. This repo is the GitHub user site, so every
-project with Pages turned on is also served at `https://zedtlabs.dev/<repo>/` —
-but only the projects listed in `projects.js` appear on the hub page.
+Zach Dando's hobby portfolio, live at **https://zedtlabs.dev/**.
 
-It's plain HTML/CSS/JS — no build step, no dependencies. GitHub Pages serves the
-files directly.
+This repo is the GitHub user site, so every project with Pages turned on is also
+served at `https://zedtlabs.dev/<repo>/`. Only the projects listed in
+`projects.js` appear on the page.
 
-## Adding a new project
+It's plain HTML, CSS and JavaScript with no build step and no dependencies.
+GitHub Pages serves the files directly.
+
+## Adding or changing a project
 
 Edit **[`projects.js`](projects.js)** and add one block to the `projects` array:
 
 ```js
 {
   title: "My New Thing",
-  repo: "My-New-Thing",          // GitHub repo name (the "Code" link is built from this)
-  description: "One sentence about what it does.",
-  updated: "2026-07-01",         // YYYY-MM-DD
+  repo: "My-New-Thing",           // GitHub repo name under the owner
+  summary: "One or two plain sentences about what it does.",
+  category: "tools",              // a key from `categories`
+  updated: "2026-11-01",          // YYYY-MM-DD, drives the log's sort
   // optional:
-  site: "https://example.com/",  // omit to use https://zedtlabs.dev/<repo>/
-  tags: ["webgl", "game"],
-  private: true,                  // adds a small lock on the Code link
+  status: "live",                 // live, cli, desktop, dev or code
+  featured: true,                 // big card with a screenshot
+  image: "img/My-New-Thing.webp", // 1200x750 (16:10) screenshot for featured cards
+  tags: ["three.js", "game"],
+  private: true,                  // hides the source link
+  site: "https://example.com/",   // only if it isn't https://zedtlabs.dev/<repo>/
 },
 ```
 
-Order doesn't matter — the page sorts itself. Commit and push; Pages redeploys
-automatically.
+Commit and push; Pages redeploys automatically. The field reference is in the
+comment at the top of `projects.js`.
 
-### Field reference
+### Writing summaries
 
-| Field | Required | Notes |
-|-------|----------|-------|
-| `title` | yes | Display name on the card. |
-| `repo` | yes | Repo name under the owner. Code link = `https://github.com/<owner>/<repo>`. |
-| `description` | yes | One sentence. |
-| `updated` | yes | `YYYY-MM-DD`. Drives the "Updated …" line and the default sort. |
-| `site` | no | Live URL. Defaults to `https://<domain>/<repo>/`. Set for projects hosted elsewhere. |
-| `tags` | no | Array of short strings shown as pills. |
-| `private` | no | `true` shows a lock on the Code link (it still opens for you when signed in). |
+Plain language and real numbers. No em dashes, no slogans, nothing that reads
+like a press release.
 
-The owner, domain, page title, and subtitle live at the top of `projects.js` under
-`window.PORTFOLIO`.
+## Page sections
 
-## Features
+- **Intro:** name, short bio, contact links and counts (worked out from the data).
+- **Featured:** every project with `featured: true`, in file order.
+- **Lab log:** every project, newest first, with category filters and search.
+- **Notes:** how the projects get made.
 
-- Responsive card grid with **5 color themes** — Midnight (default), Vapor Wave,
-  Forest, Sunset, and Daylight — picked from the palette button in the header.
-  Defaults to Midnight (dark); your choice persists across visits.
-- Sort by **Last updated** (default, newest first) or **Title**; click the active
-  sort again, or the arrow, to flip direction. Choices persist across visits.
-- Live search box that filters by title, description, repo name, and tags.
-
-### Adding a theme
-
-1. Add a palette block in `index.html` under `[data-theme="<key>"]` (copy an
-   existing one and change the colors).
-2. Add a matching entry to the `THEMES` array near the top of `app.js`
-   (`key`, `label`, and three preview swatch colors).
+Light and dark themes follow the system setting; the `[theme]` button in the
+header overrides it and remembers the choice.
 
 ## Files
 
-- `index.html` — markup + styles.
-- `projects.js` — **the data you edit.**
-- `app.js` — rendering, sorting, search, theme logic.
-- `CNAME` — the custom domain (`zedtlabs.dev`).
-- `.nojekyll` — tells Pages to serve files as-is (no Jekyll processing).
+- `index.html`: markup and styles.
+- `projects.js`: **the data you edit.**
+- `app.js`: rendering, filters, search and the theme toggle.
+- `img/`: featured screenshots and the link-preview image (`og.jpg`).
+- `CNAME`: the custom domain (`zedtlabs.dev`).
+- `.nojekyll`: tells Pages to serve files as-is.
